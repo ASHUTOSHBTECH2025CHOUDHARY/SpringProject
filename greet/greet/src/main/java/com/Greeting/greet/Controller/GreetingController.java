@@ -86,4 +86,14 @@ public class GreetingController {
     public List<Greeting> getAllGreetings() {
         return greetingService.getAllGreetings();
     }
+    //This is UC5 -:  Find Greeting by ID
+    @GetMapping("/uc5/{id}")
+    public Map<String, String> uc5FindGreetingById(@PathVariable Long id) {
+        Greeting greeting = greetingService.getGreetingById(id);
+        if (greeting != null) {
+            return Map.of("message", greeting.getMessage());
+        } else {
+            return Map.of("error", "ID" + id);
+        }
+    }
 }

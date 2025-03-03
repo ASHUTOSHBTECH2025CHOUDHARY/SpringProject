@@ -12,4 +12,9 @@ public class Greeting {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String message;
+
+    //Constructor
+    public Greeting(String message) {
+        this.message = message;
+    }
 }
