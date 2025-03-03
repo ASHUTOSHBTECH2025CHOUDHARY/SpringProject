@@ -1,8 +1,10 @@
 package com.Greeting.greet.Controller;
 
+import com.Greeting.greet.model.Greeting;
 import org.springframework.web.bind.annotation.*;
 import com.Greeting.greet.service.GreetingService;
 import java.util.Map;
+import java.util.List;
 
 @RestController
 @RequestMapping("/greeting")
@@ -72,5 +74,16 @@ public class GreetingController {
         }
 
         return Map.of("message", message);
+    }
+    // UC4 - Save Greeting Message
+    @PostMapping("/save")
+    public Greeting saveGreeting(@RequestBody Map<String, String> requestBody) {
+        String message = requestBody.getOrDefault("message", "Hello, World!");
+        return greetingService.saveGreeting(message);
+    }
+    // UC4 - Retrieve All Greetings
+    @GetMapping("/all")
+    public List<Greeting> getAllGreetings() {
+        return greetingService.getAllGreetings();
     }
 }
