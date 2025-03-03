@@ -37,4 +37,14 @@ public class GreetingService {
     public List<Greeting> getAllGreetingsUC6() {
         return greetingRepository.findAll();
     }
+    //UC7 Edit Greeting
+    public Greeting updateGreeting(Long id, String newMessage) {
+        Optional<Greeting> existingGreeting = greetingRepository.findById(id);
+        if (existingGreeting.isPresent()) {
+            Greeting greeting = existingGreeting.get();
+            greeting.setMessage(newMessage);
+            return greetingRepository.save(greeting);
+        }
+        return null;
+    }
 }

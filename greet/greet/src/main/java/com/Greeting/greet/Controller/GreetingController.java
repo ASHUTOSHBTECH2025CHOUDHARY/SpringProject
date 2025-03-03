@@ -105,4 +105,15 @@ public class GreetingController {
                         "message", greet.getMessage()))
                 .toList();
     }
+    //This is UC7:Edit the greeting
+    @PutMapping("/uc7/{id}")
+    public Map<String, String> uc7UpdateGreeting(@PathVariable Long id, @RequestBody Map<String, String> requestBody) {
+        String newMessage = requestBody.get("message");
+        Greeting updatedGreeting = greetingService.updateGreeting(id, newMessage);
+        if (updatedGreeting != null) {
+            return Map.of("message", "updated successfully", "updatedMessage", updatedGreeting.getMessage());
+        } else {
+            return Map.of("error", "Greeting " + id);
+        }
+    }
 }
