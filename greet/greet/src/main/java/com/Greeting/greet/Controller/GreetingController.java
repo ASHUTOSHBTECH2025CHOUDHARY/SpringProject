@@ -116,4 +116,14 @@ public class GreetingController {
             return Map.of("error", "Greeting " + id);
         }
     }
+    //UC8: Delete Greeting by ID
+    @DeleteMapping("/uc8/{id}")
+    public Map<String, String> uc8DeleteGreeting(@PathVariable Long id) {
+        boolean isDeleted = greetingService.deleteGreeting(id);
+        if (isDeleted) {
+            return Map.of("message", "Greeting deleted successfully");
+        } else {
+            return Map.of("error", "Greeting not found for ID: " + id);
+        }
+    }
 }
