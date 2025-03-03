@@ -81,7 +81,7 @@ public class GreetingController {
         String message = requestBody.getOrDefault("message", "Hello, World!");
         return greetingService.saveGreeting(message);
     }
-    // UC4 - Retrieve All Greetings
+    // UC4 - Retrieve All Greetings additional route for getting all greetings
     @GetMapping("/all")
     public List<Greeting> getAllGreetings() {
         return greetingService.getAllGreetings();
@@ -95,5 +95,14 @@ public class GreetingController {
         } else {
             return Map.of("error", "ID" + id);
         }
+    }
+    //This is UC6: Find all the greetings
+    @GetMapping("/uc6")
+    public List<Map<String, String>> getAllGreetingsUC6() {
+        return greetingService.getAllGreetings().stream()
+                .map(greet -> Map.of(
+                        "id", greet.getId().toString(),
+                        "message", greet.getMessage()))
+                .toList();
     }
 }

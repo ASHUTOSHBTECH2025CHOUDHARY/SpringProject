@@ -9,6 +9,7 @@ import java.util.Optional;
 @Service
 public class GreetingService {
 
+    //UC2- Get greeting message
     public String getGreetingMessage() {
         return "Hello World from UC2";
     }
@@ -17,7 +18,7 @@ public class GreetingService {
     public GreetingService(GreetingRepository greetingRepository) {
         this.greetingRepository = greetingRepository;
     }
-
+    //UC4:- Save greeting
     public Greeting saveGreeting(String message) {
         Greeting greeting = new Greeting();
         greeting.setMessage(message);
@@ -27,8 +28,13 @@ public class GreetingService {
     public List<Greeting> getAllGreetings() {
         return greetingRepository.findAll();
     }
+    //UC5: Find greeting By Id
     public Greeting getGreetingById(Long id) {
         Optional<Greeting> greeting = greetingRepository.findById(id);
         return greeting.orElse(null);
+    }
+    //UC:6 Find all greetings
+    public List<Greeting> getAllGreetingsUC6() {
+        return greetingRepository.findAll();
     }
 }
