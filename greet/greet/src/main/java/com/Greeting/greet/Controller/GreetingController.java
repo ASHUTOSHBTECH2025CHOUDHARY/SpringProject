@@ -54,4 +54,23 @@ public class GreetingController {
     public Map<String, String> uc2DeleteGreeting() {
         return Map.of("message", "from UC2 DELETE");
     }
+    //UC3
+    @GetMapping("/uc3")
+    public Map<String, String> uc3GetGreeting(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName) {
+
+        String message;
+        if (firstName != null && lastName != null) {
+            message = "Hello, " + firstName + " " + lastName;
+        } else if (firstName != null) {
+            message = "Hello, " + firstName ;
+        } else if (lastName != null) {
+            message = "Hello, " + lastName;
+        } else {
+            message = "Hello, World";
+        }
+
+        return Map.of("message", message);
+    }
 }
