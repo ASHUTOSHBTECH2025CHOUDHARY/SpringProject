@@ -78,6 +78,13 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!--OpenAi Stater -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.3.0</version> <!-- Check for the latest version -->
+		</dependency>
+
 		<!-- Spring Boot Testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
