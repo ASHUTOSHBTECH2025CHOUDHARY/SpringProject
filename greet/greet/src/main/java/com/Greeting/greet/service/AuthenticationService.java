@@ -65,4 +65,23 @@ public class AuthenticationService {
 
         emailService.sendEmail(toEmail, subject, message);
     }
+    public String forgotPassword(String email, String newPassword) {
+        Optional<AuthUser> userOptional = authUserRepository.findByEmail(email);
+        if (userOptional.isEmpty()) {
+            return "Sorry! We cannot find the user email: " + email;
+        }
+
+        AuthUser user = userOptional.get();
+        user.setPassword(passwordEncoder.encode(newPassword));
+        authUserRepository.save(user);
+
+        sendPasswordResetEmail(email);
+        return "Password has been changed successfully!";
+    }
+
+    private void sendPasswordResetEmail(String toEmail) {
+        String subject = "Password Reset Confirmation";
+        String message = "Your password has been successfully reset.";
+        emailService.sendEmail(toEmail, subject, message);
+    }
 }
