@@ -32,4 +32,10 @@ public class AuthUserController {
         String newPassword = requestBody.get("password");
         return ResponseEntity.ok(authenticationService.forgotPassword(email, newPassword));
     }
+    @PutMapping("/resetPassword/{email}")
+    public ResponseEntity<String> resetPassword(@PathVariable String email, @Valid @RequestBody Map<String, String> requestBody) {
+        String currentPassword = requestBody.get("currentPassword");
+        String newPassword = requestBody.get("newPassword");
+        return ResponseEntity.ok(authenticationService.resetPassword(email, currentPassword, newPassword));
+    }
 }
